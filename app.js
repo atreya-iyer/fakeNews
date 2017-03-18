@@ -97,46 +97,46 @@ app.get('/' , function (req , res) {
 // })
 
 
-  var bingArticleDivs = ""
-  var bing = new PythonShell('bing.py')
-  bing.send(req.query.query)
-  bing.on('message', function(message) {
-    bingArticleDivs.concat(message)
-  })
-  bing.end(function(err) {
-    if (err) throw err;
-    console.log('bing finished')
-  })
+  // var bingArticleDivs = ""
+  // var bing = new PythonShell('bing.py')
+  // bing.send(req.query.query)
+  // bing.on('message', function(message) {
+  //   bingArticleDivs.concat(message)
+  // })
+  // bing.end(function(err) {
+  //   if (err) throw err;
+  //   console.log('bing finished')
+  // })
 
-  var bingAnalysis = {}
+  // var bingAnalysis = {}
 
   
 
-  var bingParameters = {
-    'text': bingArticleDivs,
-    'features': {
-      'entities': {
-        'emotion': true,
-        'sentiment': true,
-        'limit': 2
-      },
-      'keywords': {
-        'emotion': true,
-        'sentiment': true,
-        'limit': 2
-      }
-    }
-  }
+  // var bingParameters = {
+  //   'text': bingArticleDivs,
+  //   'features': {
+  //     'entities': {
+  //       'emotion': true,
+  //       'sentiment': true,
+  //       'limit': 2
+  //     },
+  //     'keywords': {
+  //       'emotion': true,
+  //       'sentiment': true,
+  //       'limit': 2
+  //     }
+  //   }
+  // }
 
-  natural_language_understanding.analyze(bingParameters, function(err, response) {
+  // natural_language_understanding.analyze(bingParameters, function(err, response) {
 
-    if (err)
-      res.status(404).send('error:', err);
-    else
-      bingAnalysis = response
-  });
+  //   if (err)
+  //     res.status(404).send('error:', err);
+  //   else
+  //     bingAnalysis = response
+  // });
   
-  res.status(200).send(JSON.stringify(inputAnalysis, null, 2) + JSON.stringify(bingAnalysis, null, 2))
+  res.status(200).send(JSON.stringify(inputAnalysis, null, 2))
 })
 
 app.listen(80, function() {
