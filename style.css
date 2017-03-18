@@ -14,12 +14,25 @@ padding: 12px 20px;
     width: 100%;
 }
 
+#alt
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	position: absolute;
+	/*left: 43%; */
+	top: 15%;
+	/*width: 55%;*/
+	left: 55%;
+	transform: translateX(-50%);
+}
+
 #urlInput
 {
 	position: fixed;
-	left: 30%;
+	/*left: 25%;*/
 	top: 30%;
 	width: 55%;
+	transform: translateX(45%);
+
 }
 
 /*input[type=submit]
