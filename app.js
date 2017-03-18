@@ -5,7 +5,7 @@ var app = express()
 app.get('/' , function (req , res) {
 
   var inputArticleDivs = ""
-
+  console.log('This is the URL: ' + req.query.url)
   var scraper = new PythonShell('scraper.py')
   scraper.send(req.query.url)
   scraper.on('message', function(message) {
@@ -90,7 +90,7 @@ app.get('/' , function (req , res) {
       bingAnalysis = response
   });
   
-  res.send(JSON.stringify(inputAnalysis, null, 2) + JSON.stringify(bingAnalysis, null, 2))
+  res.status(200).send(JSON.stringify(inputAnalysis, null, 2) + JSON.stringify(bingAnalysis, null, 2))
 })
 
 app.listen(80, function() {
