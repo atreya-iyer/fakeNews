@@ -20,8 +20,19 @@ function pullRecentNewsArticles(query) {
             data: "{body}",
         })
         .done(function(data) {
-            alert("success");
-            console.dir(data)
+            console.log("pulling news success");
+            var articles = data["value"]
+            var bingAnalyses = articles.map(function() {
+            	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+    				if (this.readyState == 4 && this.status == 200) {
+       					return xhttp.responseText
+    				}
+				}
+				console.log("Element: " + this)
+				xhttp.open("GET", "172.30.33.79/watson?text=" + this, true);
+				xhttp.send();
+            })
         })
         .fail(function() {
             alert("error");

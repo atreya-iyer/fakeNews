@@ -3,7 +3,37 @@ var express = require('express')
 var app = express()
 
 app.get('/watson' function(req, res) {
-	
+	var NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
+  var natural_language_understanding = new NaturalLanguageUnderstandingV1({
+    'username': '36c8ab97-4c8a-4dd8-90c0-3c7d764470bc',
+    'password': 'StsxGCcAI6ct',
+    'version_date': '2017-02-27'
+
+  });
+  
+  var param = {
+    'text': req.query.text,
+    'features': {
+      'entities': {
+        'emotion': true,
+        'sentiment': true,
+        'limit': 2
+      },
+      'keywords': {
+        'emotion': true,
+        'sentiment': true,
+        'limit': 2
+      }
+    }
+  }
+
+  natural_language_understanding.analyze(param, function(err, response) {
+
+    if (err)
+      res.status(404).send('error:', err);
+    else
+      res.send(JSON.stringify(response, null, 2))
+  });
 })
 
 app.get('/' , function (req , res) {
