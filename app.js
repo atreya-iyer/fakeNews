@@ -141,7 +141,7 @@ app.get('/' , function (req , res) {
   //     bingAnalysis = response
   // });
   
-  res.send(JSON.stringify(inputAnalysis, null, 2))
+  // res.send(JSON.stringify(inputAnalysis, null, 2))
 })
 
 app.listen(80, function() {
