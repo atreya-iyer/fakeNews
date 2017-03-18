@@ -2,6 +2,10 @@ var PythonShell = require('python-shell')
 var express = require('express')
 var app = express()
 
+app.get('/watson' function(req, res) {
+	
+})
+
 app.get('/' , function (req , res) {
 
   var inputArticleDivs = ""
@@ -45,7 +49,7 @@ app.get('/' , function (req , res) {
   natural_language_understanding.analyze(inputParameters, function(err, response) {
 
     if (err)
-      res.send('error:', err);
+      res.status(404).send('error:', err);
     else
       inputAnalysis = response
   });
@@ -85,7 +89,7 @@ app.get('/' , function (req , res) {
   natural_language_understanding.analyze(bingParameters, function(err, response) {
 
     if (err)
-      res.send('error:', err);
+      res.status(404).send('error:', err);
     else
       bingAnalysis = response
   });
