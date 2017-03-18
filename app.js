@@ -16,6 +16,16 @@ app.get('/' , function (req , res) {
     console.log('scraper finished')
   })
 
+  var inputAnalysis = {}
+
+  natural_language_understanding.analyze(inputParameters, function(err, response) {
+
+    if (err)
+      res.send('error:', err);
+    else
+      inputAnalysis = response
+  });
+
 
   var bingArticleDivs = ""
   var bing = new PythonShell('bing.py')
@@ -28,8 +38,6 @@ app.get('/' , function (req , res) {
     console.log('bing finished')
   })
 
-
-  var inputAnalysis = {}
   var bingAnalysis = {}
 
   var NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
@@ -71,14 +79,6 @@ app.get('/' , function (req , res) {
       }
     }
   }
-
-  natural_language_understanding.analyze(inputParameters, function(err, response) {
-
-    if (err)
-      res.send('error:', err);
-    else
-      inputAnalysis = response
-  });
 
   natural_language_understanding.analyze(bingParameters, function(err, response) {
 
