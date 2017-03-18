@@ -1,5 +1,6 @@
 
 var express = require('express')
+var bf = require('body-parser')
 var app = express()
 
 app.get('/' , function (req , res) {
@@ -8,10 +9,12 @@ app.get('/' , function (req , res) {
     'username': '36c8ab97-4c8a-4dd8-90c0-3c7d764470bc',
     'password': 'StsxGCcAI6ct',
     'version_date': '2017-02-27'
-  });
 
+  });
+  
+  var text = req.query.text;
   var parameters = {
-    'text': 'you are a terrible human being and I do not like you. Please go kill yourself.',
+    'text': text,
     'features': {
       'entities': {
         'emotion': true,
@@ -25,19 +28,23 @@ app.get('/' , function (req , res) {
       }
     }
   }
-
   natural_language_understanding.analyze(parameters, function(err, response) {
     if (err)
       res.send('error:', err);
     else
       res.send(JSON.stringify(response, null, 2));
+      console.log(req.query.id);
   });
 
 
 })
 
+app.listen(80, function() {
+	console.log("Listenig on port 80 for http calls")
+})
+
 app.listen(3000,function () {
-  console.log("Started Watson interface")
+  console.log("Started trial Watson interface on port 3000")
 })
 
 //
