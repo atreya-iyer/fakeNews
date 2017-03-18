@@ -1,3 +1,6 @@
+
+var keyRels = {}
+
 function pullRecentNewsArticles(query) {
     $(function() {
         var params = {
@@ -27,20 +30,28 @@ function pullRecentNewsArticles(query) {
             	var xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
     				if (this.readyState == 4 && this.status == 200) {
-    					console.log(xhttp.responseText)
+
+    					var keywords = xhttp.responseText['keywords']
+            			for (j = 0; j < keywords.length; j++) {
+            				var keywordObject = keywords[j]
+            				keyRels[keywordObject['text']] = keywordObject['relevance']
+            			}
+    				
        					return xhttp.responseText
     				}
 				}
 				xhttp.open("GET", "http://172.30.33.79/watson?text=" + description, true);
 				xhttp.send();
             })
-
+            
         })
         .fail(function() {
             alert("error");
         });
     });
 }
+
+
 
 function stripInputURL(url) {
 	var array = [];
