@@ -1,4 +1,4 @@
-
+var PythonShell = require('python-shell')
 var express = require('express')
 var app = express()
 
@@ -33,6 +33,7 @@ app.get('/' , function (req , res) {
     else
       res.send(JSON.stringify(response, null, 2));
       console.log(req.query.id);
+      
   });
 
 
