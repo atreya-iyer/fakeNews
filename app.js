@@ -2,7 +2,7 @@ var PythonShell = require('python-shell')
 var express = require('express')
 var app = express()
 
-app.get('/watson' function(req, res) {
+app.get('/watson', function(req, res) {
 	var NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
   var natural_language_understanding = new NaturalLanguageUnderstandingV1({
     'username': '36c8ab97-4c8a-4dd8-90c0-3c7d764470bc',
