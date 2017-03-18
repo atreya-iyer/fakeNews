@@ -11,7 +11,7 @@ app.get('/' , function (req , res) {
   });
 
   var parameters = {
-    'text': 'IBM is an American multinational technology company headquartered in Armonk, New York, United States, with operations in over 170 countries.',
+    'text': 'you are a terrible human being and I do not like you. Please go kill yourself.',
     'features': {
       'entities': {
         'emotion': true,
@@ -37,7 +37,7 @@ app.get('/' , function (req , res) {
 })
 
 app.listen(3000,function () {
-  console.log("idk")
+  console.log("Started Watson interface")
 })
 
 //
