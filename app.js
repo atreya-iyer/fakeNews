@@ -31,7 +31,7 @@ app.get('/watson', function(req, res) {
   natural_language_understanding.analyze(param, function(err, response) {
 
     if (err)
-      
+      console.log(err)
     else
       res.send(JSON.stringify(response, null, 2))
   });
@@ -84,7 +84,7 @@ app.get('/' , function (req , res) {
   natural_language_understanding.analyze(inputParameters, function(err, response) {
 
     if (err)
-      
+      console.log(err)
     else
       inputAnalysis = response
       console.dir(response)
