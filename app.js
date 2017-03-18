@@ -1,6 +1,6 @@
 var PythonShell = require('python-shell')
 var express = require('express')
-var request = require('request');
+// var request = require('request');
 var app = express()
 
 app.get('/watson', function(req, res) {
@@ -48,6 +48,7 @@ app.get('/' , function (req , res) {
   var scraper = new PythonShell('scraper.py')
   scraper.send(req.query.url)
   scraper.on('message', function(message) {
+    console.log(message)
     inputArticleDivs.concat(message)
   })
   scraper.end(function (err) {
