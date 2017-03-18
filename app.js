@@ -1,5 +1,6 @@
 var PythonShell = require('python-shell')
 var express = require('express')
+var request = require('request');
 var app = express()
 
 app.get('/watson', function(req, res) {
@@ -37,7 +38,7 @@ app.get('/watson', function(req, res) {
 })
 
 app.get('/wolfram', function(req, res) {
-  
+
 })
 
 app.get('/' , function (req , res) {
@@ -86,7 +87,14 @@ app.get('/' , function (req , res) {
       res.status(404).send('error:', err);
     else
       inputAnalysis = response
+      console.dir(response)
   });
+
+//   request('http://172.30.33.79/watson?', function (error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//         console.log(body) // Print the google web page.
+//      }
+// })
 
 
   var bingArticleDivs = ""
