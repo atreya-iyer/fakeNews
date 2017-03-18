@@ -18,28 +18,6 @@ app.get('/' , function (req , res) {
 
   var inputAnalysis = {}
 
-  natural_language_understanding.analyze(inputParameters, function(err, response) {
-
-    if (err)
-      res.send('error:', err);
-    else
-      inputAnalysis = response
-  });
-
-
-  var bingArticleDivs = ""
-  var bing = new PythonShell('bing.py')
-  bing.send(req.query.query)
-  bing.on('message', function(message) {
-    bingArticleDivs.concat(message)
-  })
-  bing.end(function(err) {
-    if (err) throw err;
-    console.log('bing finished')
-  })
-
-  var bingAnalysis = {}
-
   var NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
   var natural_language_understanding = new NaturalLanguageUnderstandingV1({
     'username': '36c8ab97-4c8a-4dd8-90c0-3c7d764470bc',
@@ -63,6 +41,30 @@ app.get('/' , function (req , res) {
       }
     }
   }
+
+  natural_language_understanding.analyze(inputParameters, function(err, response) {
+
+    if (err)
+      res.send('error:', err);
+    else
+      inputAnalysis = response
+  });
+
+
+  var bingArticleDivs = ""
+  var bing = new PythonShell('bing.py')
+  bing.send(req.query.query)
+  bing.on('message', function(message) {
+    bingArticleDivs.concat(message)
+  })
+  bing.end(function(err) {
+    if (err) throw err;
+    console.log('bing finished')
+  })
+
+  var bingAnalysis = {}
+
+  
 
   var bingParameters = {
     'text': bingArticleDivs,
