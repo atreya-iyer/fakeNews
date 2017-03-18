@@ -46,14 +46,15 @@ app.get('/' , function (req , res) {
   var inputArticleDivs = ""
   console.log('This is the URL: ' + req.query.url)
   var scraper = new PythonShell('scraper.py')
-  scraper.send(req.query.url)
+  // scraper.send(req.query.url)
   scraper.on('message', function(message) {
-    console.log(message)
+    // console.log(message)
     inputArticleDivs.concat(message)
   })
   scraper.end(function (err) {
     if (err) throw err;
     console.log('scraper finished')
+    console.log(inputArticleDivs)
   })
 
   var inputAnalysis = {}
