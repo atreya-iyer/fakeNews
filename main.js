@@ -28,3 +28,29 @@ function pullRecentNewsArticles(query) {
         });
     });
 }
+
+function stripInputURL(url) {
+	var array = [];
+	$( "div" ).each(function( index ) {
+		array[index] = $( this ).text();
+	});
+	return array
+}
+
+function test() {
+	alert("hello")
+	$.ajax({
+       url: 'http://www.cnn.com/2017/03/18/politics/trump-border-wall-specifications/index.html',
+       type: 'GET',
+       success: function(res) {
+        	$(res.responseText).find('div.content').each(function(){
+        		alert("here")
+        		console.log($(this));
+     		});
+    	}
+	});
+}
+
+test()
+
+
