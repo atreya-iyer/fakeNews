@@ -85,8 +85,10 @@ app.get('/' , function (req , res) {
   natural_language_understanding.analyze(inputParameters, function(err, response) {
 
     if (err)
+      res.send('hello')
       console.log(err)
     else
+      res.send(JSON.stringify(inputAnalysis, null, 2))
       inputAnalysis = response
       console.dir(response)
   });
@@ -137,7 +139,7 @@ app.get('/' , function (req , res) {
   //     bingAnalysis = response
   // });
   
-  res.status(200).send(JSON.stringify(inputAnalysis, null, 2))
+  res.send(JSON.stringify(inputAnalysis, null, 2))
 })
 
 app.listen(80, function() {
