@@ -1,6 +1,7 @@
 var PythonShell = require('python-shell')
 var express = require('express')
 var app = express()
+var jquery = require('jquery')
 
 app.get('/' , function (req , res) {
   var NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
@@ -28,6 +29,7 @@ app.get('/' , function (req , res) {
     }
   }
   natural_language_understanding.analyze(parameters, function(err, response) {
+
     if (err)
       res.send('error:', err);
     else
@@ -35,8 +37,27 @@ app.get('/' , function (req , res) {
       console.log(req.query.id);
       
   });
+  var scraper = new PythonShell('scraper.py')
+  scraper.on('message', function(message) {
+ 	console.log('Scraper says ' + message)
+	//console.log(message.innerHTML)
+  })
+  scraper.end(function (err) {
+	if (err) throw err;
+	console.log('scraper finished')
+  })
+  //PythonShell.run('scraper.py', function(err) {
+//	if (err) throw err;
+//	console.log('scraper successful')
+  //})
 
-
+  //var options = {
+//	args: [req.query.testQuery]
+ // }
+  //PythonShell.run('test.py', options, function(err, results) {
+//	if (err) throw err;
+//	console.log('results: ' + results)
+ // })
 })
 
 app.listen(80, function() {
