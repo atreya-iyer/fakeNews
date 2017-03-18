@@ -22,17 +22,19 @@ function pullRecentNewsArticles(query) {
         .done(function(data) {
             console.log("pulling news success");
             var articles = data["value"]
-            var bingAnalyses = articles.map(function() {
+            var bingAnalyses = articles.map(function(a) {
+            	var description = a['description']
             	var xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
     				if (this.readyState == 4 && this.status == 200) {
+    					console.log(xhttp.responseText)
        					return xhttp.responseText
     				}
 				}
-				console.log("Element: " + this)
-				xhttp.open("GET", "172.30.33.79/watson?text=" + this, true);
+				xhttp.open("GET", "http://172.30.33.79/watson?text=" + description, true);
 				xhttp.send();
             })
+
         })
         .fail(function() {
             alert("error");
@@ -49,7 +51,6 @@ function stripInputURL(url) {
 }
 
 function test() {
-	alert("hello")
 	$.ajax({
        url: 'http://www.cnn.com/2017/03/18/politics/trump-border-wall-specifications/index.html',
        type: 'GET',
@@ -62,6 +63,6 @@ function test() {
 	});
 }
 
-test()
+pullRecentNewsArticles('trump')
 
 
