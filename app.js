@@ -84,13 +84,15 @@ app.get('/' , function (req , res) {
 
   natural_language_understanding.analyze(inputParameters, function(err, response) {
 
-    if (err)
+    if (err) {
       res.send('hello')
       console.log(err)
-    else
+    }
+    else {
       res.send(JSON.stringify(inputAnalysis, null, 2))
       inputAnalysis = response
       console.dir(response)
+    }
   });
 
 //   request('http://172.30.33.79/watson?', function (error, response, body) {
