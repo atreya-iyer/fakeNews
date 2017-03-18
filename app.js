@@ -85,7 +85,7 @@ app.get('/' , function (req , res) {
   natural_language_understanding.analyze(inputParameters, function(err, response) {
 
     if (err) {
-      res.send('hello')
+      res.send(err)
       console.log(err)
     }
     else {
